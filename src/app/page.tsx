@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Download, CheckCircle2, ChevronRight, Menu, Folder, FileCode2 } from 'lucide-react';
+import { Download, CheckCircle2, ChevronRight, Menu, Folder, FileCode2, Sun, Moon } from 'lucide-react';
 import { motion, useScroll, useTransform, AnimatePresence, useInView } from 'framer-motion';
 
 const Typewriter = ({ text, delay = 50, cursorClassName, startDelay = 0, hideCursorOnComplete = false }: { text: string, delay?: number, cursorClassName?: string, startDelay?: number, hideCursorOnComplete?: boolean }) => {
@@ -75,31 +75,36 @@ export default function Home() {
   const yHeroDeco = useTransform(scrollYProgress, [0, 0.5], [0, 200]);
   const rotateHeroDeco = useTransform(scrollYProgress, [0, 0.5], [-6, 10]);
   const [isFolderOpen, setIsFolderOpen] = useState(false);
+  const [theme, setTheme] = useState('light');
+  const toggleTheme = () => setTheme(t => t === 'light' ? 'dark' : 'light');
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5] text-[#1A3649] font-sans selection:bg-[#FF6F4A] selection:text-white">
+    <div className={`min-h-screen bg-[#F5F5F5] dark:bg-[#0A151C] text-[#1A3649] dark:text-[#F5F5F5] font-sans selection:bg-[#FF6F4A] selection:text-white transition-colors duration-500 ${theme}`}>
       {/* Navigation */}
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, type: "spring", damping: 20 }}
-        className="sticky top-0 z-50 bg-white border-b border-[#E5E5E5] flex justify-between items-center px-6 md:px-10 py-4 w-full"
+        className="sticky top-0 z-50 bg-white dark:bg-[#0A151C]/90 backdrop-blur-md border-b border-[#E5E5E5] dark:border-[#2A4B63] flex justify-between items-center px-6 md:px-10 py-4 w-full transition-colors duration-500"
       >
         <div className="flex items-center space-x-2">
-          <span className="text-4xl md:text-5xl font-display font-black tracking-tighter uppercase text-[#1A3649]">
+          <span className="text-4xl md:text-5xl font-display font-black tracking-tighter uppercase text-[#1A3649] dark:text-white transition-colors duration-500">
             Adamu<span className="text-[#FF6F4A]">.</span>
           </span>
         </div>
         
-        <div className="hidden md:flex space-x-12 text-[11px] font-bold uppercase tracking-[0.15em] text-[#1A3649]">
+        <div className="hidden md:flex space-x-12 text-[11px] font-bold uppercase tracking-[0.15em] text-[#1A3649] dark:text-white/80 transition-colors duration-500">
           <a href="#home" className="hover:text-[#FF6F4A] transition-colors hover:-translate-y-0.5 transform">Home</a>
           <a href="#services" className="hover:text-[#FF6F4A] transition-colors hover:-translate-y-0.5 transform">Services</a>
           <a href="#projects" className="hover:text-[#FF6F4A] transition-colors hover:-translate-y-0.5 transform">Works</a>
           <a href="#contact" className="hover:text-[#FF6F4A] transition-colors hover:-translate-y-0.5 transform">Contact</a>
         </div>
         
-        <div className="flex items-center gap-6">
-          <button className="md:hidden text-[#1A3649]">
+        <div className="flex items-center gap-4 md:gap-6">
+          <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-[#1A3649] dark:text-white">
+            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+          <button className="md:hidden text-[#1A3649] dark:text-white transition-colors duration-500">
             <Menu size={24} />
           </button>
         </div>
@@ -249,7 +254,7 @@ export default function Home() {
               </motion.div>
               <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col justify-center transform origin-left">
                 <div className="text-6xl md:text-8xl font-display font-black tracking-tighter mb-4">
-                  <Counter to={10} duration={2} />+
+                  <Counter to={50} duration={2} />+
                 </div>
                 <div className="text-xs font-bold uppercase tracking-widest text-white/80">Projects<br/>Completed</div>
               </motion.div>
@@ -361,72 +366,170 @@ export default function Home() {
                 animate={{ opacity: 1, height: "auto", y: 0 }}
                 exit={{ opacity: 0, height: 0, y: -50 }}
                 transition={{ duration: 0.5, type: "spring", bounce: 0.3 }}
-                className="w-full mt-24 flex gap-6 md:gap-8 p-4 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth pb-16 rounded-xl border border-transparent"
+                className="w-full mt-24 overflow-hidden pb-16 relative"
               >
+                <motion.div
+                  className="flex gap-6 md:gap-10 w-max"
+                  animate={{ x: ["0%", "-50%"] }}
+                  transition={{ repeat: Infinity, duration: 50, ease: "linear" }}
+                >
                 {[
+                  {
+                    title: "IRON-TRACK",
+                    desc: "Track workouts, analyze form, and optimize gains using state-of-the-art artificial intelligence.",
+                    stack: "Next JS, Tailwind CSS",
+                    url: "https://irontracklandingpage.vercel.app",
+                    image: "/iron-track1.png"
+                  },
+                  {
+                    title: "QUICKA",
+                    desc: "Fast and reliable delivery logistics platform.",
+                    stack: "Next JS, Tailwind CSS",
+                    url: "https://www.quickanigeria.com",
+                    image: "/quicka.png"
+                  },
                   {
                     title: "SMATPAY WEB APP",
                     desc: "A fintech App which allow users to buy Data, airtime, TV subscription, pay bills online.",
-                    stack: "React.js, JavaScript, Tailwind CSS"
+                    stack: "React.js, Tailwind CSS",
+                    url: "https://www.smatpay.com.ng",
+                    image: "/smatpay.png"
                   },
                   {
-                    title: "AI-POWERED TRACKER",
-                    desc: "Track workouts, analyze form, and optimize gains using state-of-the-art artificial intelligence.",
-                    stack: "Nextjs, JavaScript, Tailwind CSS"
-                  },
-                  {
-                    title: "APRILFULL",
-                    desc: "Africa's Premier WEB3 entertainment event where innovation meets creativity.",
-                    stack: "React.js, Tailwind CSS"
-                  },
-                  {
-                    title: "AUTOBID PLATFORM",
-                    desc: "Automotive auction live bidding platform with real-time updates.",
-                    stack: "Next JS, Tailwind CSS"
-                  },
-                  {
-                    title: "LEOTEK SOLUTIONS",
-                    desc: "Cloudbase call center solutions and value added services.",
-                    stack: "Next JS, Tailwind CSS"
+                    title: "HEXATECH",
+                    desc: "Innovative technological solutions to power your business growth.",
+                    stack: "Next JS, Tailwind CSS",
+                    url: "https://hexatech-latest.vercel.app",
+                    image: "/hexatech.png"
                   },
                   {
                     title: "HEXACORE BANKING",
                     desc: "Streamlined Solutions for Modern Banking. Empower workforce and enhance efficiency.",
-                    stack: "Next JS, Tailwind CSS"
+                    stack: "Next JS, Tailwind CSS",
+                    url: "https://www.hexacore.ng",
+                    image: "/hexacore.png"
+                  },
+                  {
+                    title: "LEOTEK SOLUTIONS",
+                    desc: "Cloudbase call center solutions and value added services.",
+                    stack: "Next JS, Tailwind CSS",
+                    url: "https://www.leoteksolutions.net.ng",
+                    image: "/leotek.png"
+                  },
+                  {
+                    title: "KOYITECH",
+                    desc: "Empowering businesses through cutting-edge technology and digital solutions.",
+                    stack: "Next JS, Tailwind CSS",
+                    url: "https://koyitech.africa",
+                    image: "/koyitech.png"
+                  },
+                  {
+                    title: "APOLLO",
+                    desc: "High-performance landing page and modern digital experience platform.",
+                    stack: "Next JS, Tailwind CSS",
+                    url: "https://apollo-landing-one.vercel.app/",
+                    image: "/apollo.png"
+                  },
+                  // Duplicated for infinite loop
+                  {
+                    title: "IRON-TRACK",
+                    desc: "Track workouts, analyze form, and optimize gains using state-of-the-art artificial intelligence.",
+                    stack: "Next JS, Tailwind CSS",
+                    url: "https://irontracklandingpage.vercel.app",
+                    image: "/iron-track1.png"
+                  },
+                  {
+                    title: "QUICKA",
+                    desc: "Fast and reliable delivery logistics platform.",
+                    stack: "Next JS, Tailwind CSS",
+                    url: "https://www.quickanigeria.com",
+                    image: "/quicka.png"
+                  },
+                  {
+                    title: "SMATPAY WEB APP",
+                    desc: "A fintech App which allow users to buy Data, airtime, TV subscription, pay bills online.",
+                    stack: "React.js, Tailwind CSS",
+                    url: "https://www.smatpay.com.ng",
+                    image: "/smatpay.png"
+                  },
+                  {
+                    title: "HEXATECH",
+                    desc: "Innovative technological solutions to power your business growth.",
+                    stack: "Next JS, Tailwind CSS",
+                    url: "https://hexatech-latest.vercel.app",
+                    image: "/hexatech.png"
+                  },
+                  {
+                    title: "HEXACORE BANKING",
+                    desc: "Streamlined Solutions for Modern Banking. Empower workforce and enhance efficiency.",
+                    stack: "Next JS, Tailwind CSS",
+                    url: "https://www.hexacore.ng",
+                    image: "/hexacore.png"
+                  },
+                  {
+                    title: "LEOTEK SOLUTIONS",
+                    desc: "Cloudbase call center solutions and value added services.",
+                    stack: "Next JS, Tailwind CSS",
+                    url: "https://www.leoteksolutions.net.ng",
+                    image: "/leotek.png"
+                  },
+                  {
+                    title: "KOYITECH",
+                    desc: "Empowering businesses through cutting-edge technology and digital solutions.",
+                    stack: "Next JS, Tailwind CSS",
+                    url: "https://koyitech.africa",
+                    image: "/koyitech.png"
+                  },
+                  {
+                    title: "APOLLO",
+                    desc: "High-performance landing page and modern digital experience platform.",
+                    stack: "Next JS, Tailwind CSS",
+                    url: "https://apollo-landing-one.vercel.app/",
+                    image: "/apollo.png"
                   }
                 ].map((project, idx) => (
                   <motion.div 
-                    initial={{ opacity: 0, scale: 0.3, x: idx % 2 === 0 ? -100 : 100, rotate: idx % 2 === 0 ? -25 : 25 }}
-                    animate={{ opacity: 1, scale: 1, x: 0, rotate: 0 }}
-                    whileHover={{ scale: 1.02, y: -5, zIndex: 30 }}
-                    exit={{ opacity: 0, scale: 0.3, x: idx % 2 === 0 ? -100 : 100, rotate: 0 }}
-                    transition={{ delay: idx * 0.1, type: "spring", stiffness: 120, damping: 14 }}
+                    initial={{ opacity: 0, scale: 0.3, y: idx % 2 === 0 ? -100 : 100, rotate: idx % 2 === 0 ? -25 : 25 }}
+                    animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
+                    whileHover={{ scale: 1.02, zIndex: 30 }}
+                    exit={{ opacity: 0, scale: 0.3, y: idx % 2 === 0 ? -100 : 100, rotate: 0 }}
+                    transition={{ delay: (idx % 8) * 0.1, type: "spring", stiffness: 120, damping: 14 }}
                     key={idx}
-                    className="min-w-[85vw] md:min-w-[400px] lg:min-w-[450px] snap-center shrink-0 bg-white p-8 rounded-xl border border-[#E5E5E5] shadow-[0_10px_30px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-shadow group relative overflow-hidden flex flex-col h-full origin-center"
+                    className="min-w-[90vw] md:min-w-[700px] lg:min-w-[800px] shrink-0 bg-white dark:bg-[#112431] p-6 md:p-8 rounded-xl border border-[#E5E5E5] dark:border-[#2A4B63] shadow-[0_10px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-shadow group relative overflow-hidden flex flex-col md:flex-row gap-6 md:gap-10 h-auto md:h-[400px] origin-center items-center"
                   >
-                    {/* File icon / header */}
-                    <div className="flex justify-between items-start mb-8">
-                       <div className="w-12 h-12 bg-[#F5F5F5] rounded-lg flex items-center justify-center text-[#1A3649] group-hover:bg-[#FF6F4A] group-hover:text-white transition-colors">
-                         <FileCode2 size={24} />
-                       </div>
-                       <div className="text-[9px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-full bg-[#1A3649]/5 text-[#1A3649]">
-                         {project.stack.split(',')[0]}
-                       </div>
+                    {project.image && (
+                      <div className="w-full md:w-1/2 h-48 md:h-full rounded-lg overflow-hidden relative bg-[#F5F5F5] dark:bg-[#0A151C] shrink-0 border border-[#E5E5E5] dark:border-[#2A4B63]">
+                        <Image src={project.image} alt={project.title} fill className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                      </div>
+                    )}
+                    
+                    <div className={project.image ? "w-full md:w-1/2 flex flex-col h-full justify-between py-2" : "w-full flex flex-col h-full justify-between py-2"}>
+                      <div>
+                        <div className="flex justify-between items-start mb-6 shrink-0">
+                           <div className="w-12 h-12 bg-[#F5F5F5] dark:bg-[#0A151C] rounded-lg flex items-center justify-center text-[#1A3649] dark:text-white group-hover:bg-[#FF6F4A] group-hover:text-white transition-colors">
+                             <FileCode2 size={24} />
+                           </div>
+                           <div className="text-[9px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-full bg-[#1A3649]/5 dark:bg-white/5 text-[#1A3649] dark:text-white/80">
+                             {project.stack.split(',')[0]}
+                           </div>
+                        </div>
+                        
+                        <h3 className="text-2xl md:text-3xl font-display font-black uppercase tracking-tight leading-[1] mb-4 text-[#1A3649] dark:text-white transition-colors">{project.title}</h3>
+                        <p className="text-sm text-[#1A3649]/60 dark:text-white/60 mb-6 flex-grow font-light transition-colors">{project.desc}</p>
+                        
+                        <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#FF6F4A] mb-6 shrink-0">
+                          {project.stack}
+                        </div>
+                      </div>
+                      
+                      <a href={project.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-[#1A3649] dark:text-white group-hover:text-[#FF6F4A] transition-colors duration-300 mt-auto shrink-0 inline-flex w-fit cursor-pointer">
+                        View Project
+                        <ChevronRight size={16} className="group-hover:translate-x-2 transition-transform" />
+                      </a>
                     </div>
-                    
-                    <h3 className="text-3xl font-display font-black uppercase tracking-tight leading-[1] mb-4 text-[#1A3649]">{project.title}</h3>
-                    <p className="text-sm text-[#1A3649]/60 mb-8 flex-grow font-light">{project.desc}</p>
-                    
-                    <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#FF6F4A] mb-6">
-                      {project.stack}
-                    </div>
-                    
-                    <button className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-[#1A3649] group-hover:text-[#FF6F4A] transition-colors duration-300">
-                      Open File
-                      <ChevronRight size={16} className="group-hover:translate-x-2 transition-transform" />
-                    </button>
                   </motion.div>
                 ))}
+                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
