@@ -89,7 +89,7 @@ export default function Home() {
       >
         <div className="flex items-center space-x-2">
           <span className="text-4xl md:text-5xl font-display font-black tracking-tighter uppercase text-[#1A3649] dark:text-white transition-colors duration-500">
-            Adamu<span className="text-[#FF6F4A]">.</span>
+            Adamu<span className="text-[#FF6F4A]">.DEV</span>
           </span>
         </div>
         
@@ -200,11 +200,11 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-1 lg:row-span-2 bg-[#EBEBEB] p-10 md:p-14 flex flex-col justify-center overflow-hidden group"
+            className="lg:col-span-1 lg:row-span-2 bg-[#EBEBEB] dark:bg-[#112431] p-10 md:p-14 flex flex-col justify-center overflow-hidden group transition-colors duration-500"
           >
             <div className="mb-12 relative z-10">
               <h3 className="text-sm font-bold uppercase tracking-widest text-[#FF6F4A] mb-2">Why Choose Me</h3>
-              <h2 className="text-4xl md:text-5xl font-display font-black uppercase tracking-tighter leading-none group-hover:scale-105 transition-transform transform origin-left text-[#1A3649]">Experience Area</h2>
+              <h2 className="text-4xl md:text-5xl font-display font-black uppercase tracking-tighter leading-none group-hover:scale-105 transition-transform transform origin-left text-[#1A3649] dark:text-white">Experience Area</h2>
             </div>
             
             <div className="space-y-5 w-full relative z-10">
@@ -219,17 +219,17 @@ export default function Home() {
                 { name: 'Web Design', val: 85 }
               ].map((skill, idx) => (
                 <div key={skill.name}>
-                  <div className="flex justify-between text-[11px] font-bold uppercase tracking-wider mb-3 text-[#1A3649]">
+                  <div className="flex justify-between text-[11px] font-bold uppercase tracking-wider mb-3 text-[#1A3649] dark:text-white transition-colors duration-500">
                     <span>{skill.name}</span>
                     <span>{skill.val}%</span>
                   </div>
-                  <div className="w-full h-1 bg-[#DDDDDD] overflow-hidden">
+                  <div className="w-full h-1 bg-[#DDDDDD] dark:bg-white/10 overflow-hidden">
                     <motion.div 
                       initial={{ x: "-100%" }}
                       whileInView={{ x: `${skill.val - 100}%` }}
                       viewport={{ once: true, margin: "-50px" }}
                       transition={{ duration: 1.5, delay: 0.2 + (idx * 0.1), ease: "easeOut" }}
-                      className="w-full h-full bg-[#1A3649]"
+                      className="w-full h-full bg-[#1A3649] dark:bg-white"
                     />
                   </div>
                 </div>
@@ -273,10 +273,10 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-2 bg-white p-10 md:p-14 flex flex-col md:flex-row items-center justify-between min-h-[400px] border border-[#EEEEEE]"
+            className="lg:col-span-2 bg-white dark:bg-[#112431] p-10 md:p-14 flex flex-col md:flex-row items-center justify-between min-h-[400px] border border-[#EEEEEE] dark:border-[#2A4B63] transition-colors duration-500"
           >
             <div className="md:w-1/3 mb-10 md:mb-0">
-              <h2 className="text-4xl md:text-5xl font-display font-black uppercase tracking-tighter leading-none mb-4 text-[#1A3649]">Tech<br/>Stack</h2>
+              <h2 className="text-4xl md:text-5xl font-display font-black uppercase tracking-tighter leading-none mb-4 text-[#1A3649] dark:text-white transition-colors duration-500">Tech<br/>Stack</h2>
               <p className="text-xs font-bold uppercase tracking-widest text-[#FF6F4A]">Tools of the trade</p>
             </div>
             
@@ -289,7 +289,7 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1, duration: 0.3 }}
                   key={tech} 
-                  className="flex items-center gap-2 border border-[#E5E5E5] px-6 py-3 bg-[#F9F9F9] hover:bg-[#1A3649] hover:text-white hover:border-[#1A3649] transition-colors cursor-default shadow-sm hover:shadow-xl text-[#1A3649]"
+                  className="flex items-center gap-2 border border-[#E5E5E5] dark:border-[#2A4B63] px-6 py-3 bg-[#F9F9F9] dark:bg-[#152A3A] hover:bg-[#1A3649] hover:text-white dark:hover:bg-white dark:hover:text-[#1A3649] transition-colors cursor-default shadow-sm hover:shadow-xl text-[#1A3649] dark:text-white"
                 >
                   <CheckCircle2 size={16} />
                   <span className="text-[11px] font-bold uppercase tracking-wider">{tech}</span>
@@ -302,7 +302,7 @@ export default function Home() {
       </section>
 
       {/* Portfolio Section */}
-      <section id="projects" className="py-24 md:py-32 w-full overflow-hidden bg-[#F5F5F5] min-h-[80vh]">
+      <section id="projects" className="py-24 md:py-32 w-full overflow-hidden bg-[#F5F5F5] dark:bg-[#0A151C] min-h-[80vh] transition-colors duration-500">
         <motion.div 
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -311,10 +311,10 @@ export default function Home() {
           className="max-w-[1600px] mx-auto px-6 md:px-10 mb-16 flex flex-col items-center text-center gap-4"
         >
           <h3 className="text-sm font-bold uppercase tracking-widest text-[#FF6F4A]">Portfolio</h3>
-          <h2 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter leading-none text-[#1A3649]">
+          <h2 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter leading-none text-[#1A3649] dark:text-white transition-colors duration-500">
             My Amazing Works
           </h2>
-          <p className="text-[#1A3649]/60 max-w-lg mt-4 font-light">Click the folder below to unlock and explore my recent projects.</p>
+          <p className="text-[#1A3649]/60 dark:text-white/60 max-w-lg mt-4 font-light transition-colors duration-500">Click the folder below to unlock and explore my recent projects.</p>
         </motion.div>
         
         <div className="w-full max-w-7xl mx-auto px-6 md:px-10 flex flex-col items-center">
@@ -495,11 +495,11 @@ export default function Home() {
                     exit={{ opacity: 0, scale: 0.3, y: idx % 2 === 0 ? -100 : 100, rotate: 0 }}
                     transition={{ delay: (idx % 8) * 0.1, type: "spring", stiffness: 120, damping: 14 }}
                     key={idx}
-                    className="min-w-[90vw] md:min-w-[700px] lg:min-w-[800px] shrink-0 bg-white dark:bg-[#112431] p-6 md:p-8 rounded-xl border border-[#E5E5E5] dark:border-[#2A4B63] shadow-[0_10px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-shadow group relative overflow-hidden flex flex-col md:flex-row gap-6 md:gap-10 h-auto md:h-[400px] origin-center items-center"
+                    className="min-w-[90vw] md:min-w-[700px] lg:min-w-[800px] shrink-0 bg-white dark:bg-[#112431] hover:bg-[#FFF5F2] dark:hover:bg-[#1A3649] p-6 md:p-8 rounded-xl border border-[#E5E5E5] dark:border-[#2A4B63] shadow-[0_10px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-all duration-300 group relative overflow-hidden flex flex-col md:flex-row gap-6 md:gap-10 h-auto md:h-[400px] origin-center items-center"
                   >
                     {project.image && (
-                      <div className="w-full md:w-1/2 h-48 md:h-full rounded-lg overflow-hidden relative bg-[#F5F5F5] dark:bg-[#0A151C] shrink-0 border border-[#E5E5E5] dark:border-[#2A4B63]">
-                        <Image src={project.image} alt={project.title} fill className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                      <div className="w-full md:w-1/2 h-48 md:h-full rounded-lg overflow-hidden relative shrink-0 border border-[#E5E5E5] dark:border-[#2A4B63]">
+                        <Image src={project.image} alt={project.title} fill className="object-cover object-center group-hover:scale-105 transition-transform duration-500" />
                       </div>
                     )}
                     
@@ -515,7 +515,10 @@ export default function Home() {
                         </div>
                         
                         <h3 className="text-2xl md:text-3xl font-display font-black uppercase tracking-tight leading-[1] mb-4 text-[#1A3649] dark:text-white transition-colors">{project.title}</h3>
-                        <p className="text-sm text-[#1A3649]/60 dark:text-white/60 mb-6 flex-grow font-light transition-colors">{project.desc}</p>
+                        
+                        <p className="text-sm text-[#1A3649]/60 dark:text-white/60 font-light max-h-0 opacity-0 -translate-y-4 group-hover:max-h-[150px] group-hover:opacity-100 group-hover:translate-y-0 group-hover:mb-6 transition-all duration-500 ease-out overflow-hidden">
+                          {project.desc}
+                        </p>
                         
                         <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#FF6F4A] mb-6 shrink-0">
                           {project.stack}
